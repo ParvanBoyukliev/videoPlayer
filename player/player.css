@@ -1,0 +1,98 @@
+.player-container{
+    display: inline-block;
+    position: relative;
+    background-color: black;
+}
+.player-container video{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background-color: blueviolet;
+}
+
+.player-controls{
+    position: absolute;
+    width:100%;
+    height: 32px;
+    bottom:0;
+    background-color: rgba(255,255,255,1);
+    display: flex;
+    opacity:0.1;
+    transition: opacity 0.3s ease;
+    gap:10px;
+}
+.player-controls:hover{
+    opacity: 1;
+}
+.player-controls > *{
+    cursor: pointer;
+}
+.player-controls .player-btn-play,
+.player-controls .player-btn-expand,
+.player-controls .player-volume-icon,
+.player-controls .player-btn-pause{
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    width: 32px;
+}
+.player-controls .player-btn-play{
+    background-image: url(play-solid.svg);
+}
+.player-controls .player-btn-expand{
+    background-image: url(expand-solid.svg);
+    order: 10;
+}
+.player-container.full-screen .player-btn-expand{
+    background-image: url(compress-solid.svg);
+}
+.player-controls .player-btn-pause{
+    background-image: url(pause-solid.svg);
+    display: none;
+}
+.player-container.playing .player-btn-play{
+    display: none;
+}
+.player-container.playing .player-btn-pause{
+    display: block;
+}
+
+.player-controls .player-volume-box{
+    position: relative;
+    margin-left: auto;
+}
+.player-controls .player-volume-icon{
+    background-image: url(volume-xmark-solid.svg);
+    height: 32px;
+    position: relative;
+    z-index: 10;
+}
+.player-controls .player-volume-box[data-volume-class=off] .player-volume-icon{
+    background-image: url(volume-off-solid.svg);
+}
+.player-controls .player-volume-box[data-volume-class=low] .player-volume-icon{
+    background-image: url(volume-low-solid.svg);
+}
+.player-controls .player-volume-box[data-volume-class=high] .player-volume-icon{
+    background-image: url(volume-high-solid.svg);
+}
+.player-controls .player-volume-stripe{
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    position: absolute;
+    width:100%;
+    height:150px;
+    left:0;
+    bottom: 0;
+    background-color: rgba(255,255,255,1);
+    border-radius: 30px;
+}
+.player-controls .player-volume-box:hover .player-volume-stripe{
+    visibility: visible;
+    opacity: 1;
+}
+.player-controls .player-volume-stripe input{
+    width:100px;
+    transform: translate(-35px,50px) rotate(-90deg);
+}
